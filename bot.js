@@ -1,5 +1,4 @@
 const Commando = require('discord.js-commando')
-const sqlite = require('sqlite');
 
 const client = new Commando.CommandoClient({
     commandPrefix: '!!',
