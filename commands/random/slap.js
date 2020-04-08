@@ -124,6 +124,8 @@ module.exports = class ChangeColorCommand extends Command {
         const guild = this.client.guilds.get(process.env.GUILD_ID)
         var attacker = guild.members.get(message.author.id)
         var victim = guild.members.get(target.id)
+        var attackerName = attacker.nickname !== null ? attacker.nickname : attacker.displayName
+        var victimName = victim.nickname !== null ? victim.nickname : victim.displayName
         if (message.author.id === target.id) {
             message.reply(attacker.nickname + ' slapped themself in confusion......moron....')
         } else if (target.id === "410998839089168394") {
@@ -145,33 +147,33 @@ module.exports = class ChangeColorCommand extends Command {
                         if (random <= 0.01) {
                             //<= 0.01 - 1%
                             attacker.kick()
-                            .then(message.channel.send(legendaryBadResponse(attacker.nickname, victim.nickname)))
+                            .then(message.channel.send(legendaryBadResponse(attackerName, victimName)))
                             .catch('I cannot kick this person...');
                         } else if (random <= 0.05) {
                             //0.01 to 0.05 - 4%
-                            message.channel.send(epicBadResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(epicBadResponse(attackerName, victimName));
                         } else if (random <= 0.10) {
                             //0.05 to 0.10 - 5%
-                            message.channel.send(rareBadResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(rareBadResponse(attackerName, victimName));
                         } else if (random <= 0.25) {
                             //0.10 to 0.25 - 15%
-                            message.channel.send(uncommonBadResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(uncommonBadResponse(attackerName, victimName));
                         } else if (random <= 0.75) {
                             //0.25 to 0.75 - 50%
-                            message.channel.send(commonResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(commonResponse(attackerName, victimName));
                         } else if (random <= 0.90) {
                             //0.75 to 0.90 - 15%
-                            message.channel.send(uncommonGoodResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(uncommonGoodResponse(attackerName, victimName));
                         } else if (random <= 0.95) {
                             //0.90 to 0.95 - 5%
-                            message.channel.send(rareGoodResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(rareGoodResponse(attackerName, victimName));
                         } else if (random <= 0.99) {
                             //0.95 to 0.99 - 4%
-                            message.channel.send(epicGoodResponse(attacker.nickname, victim.nickname));
+                            message.channel.send(epicGoodResponse(attackerName, victimName));
                         } else {
                             //>= 0.99 - 1%
                             victim.kick()
-                            .then(message.channel.send(legendaryGoodResponse(attacker.nickname, victim.nickname)))
+                            .then(message.channel.send(legendaryGoodResponse(attackerName, victimName)))
                             .catch(error => message.channel('I cannot kick this person...'))
                         }
                     }

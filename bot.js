@@ -11,7 +11,8 @@ client.registry
     .registerDefaultTypes()
     .registerGroups([
         ['account', 'Commands relating to managing your account'],
-        ['random', 'Commands with random effects']
+        ['random', 'Commands with random effects'],
+        ['bot', 'Commands giving info about the bot']
     ])
     .registerDefaultGroups()
     .registerDefaultCommands()
