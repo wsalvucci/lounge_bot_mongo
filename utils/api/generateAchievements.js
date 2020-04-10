@@ -20,6 +20,11 @@ const testAchievements = [
         title: "10 seconds voice",
         roleId: "697277044928675861",
         secondsVoice: 10
+    },
+    {
+        title: "1 hour voice",
+        roleId: "698319607290658838",
+        secondsVoice: 3600
     }
 ]
 
@@ -74,7 +79,7 @@ const achievements = [
     {
         title: "172800 seconds voice",
         roleId: "697300591864709180",
-        messagesSent: 172800
+        secondsVoice: 172800
     }
 ]
 

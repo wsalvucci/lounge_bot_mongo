@@ -35,32 +35,19 @@ function checkStatus(msg) {
             if (json.error !== undefined) {
                 console.log(error)
             } else {
-                if (json.messagesSent >= 2500) {
-                    var newAward = messageAchievements.find(achievement => achievement.messagesSent === 2500)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(msg, newAward.roleId, newAward.messagesSent)
-                    }
-                } else if (json.messagesSent >= 1000) {
-                    var newAward = messageAchievements.find(achievement => achievement.messagesSent === 1000)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(msg, newAward.roleId, newAward.messagesSent)
-                    }
-                } else if (json.messagesSent >= 500) {
-                    var newAward = messageAchievements.find(achievement => achievement.messagesSent === 500)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(msg, newAward.roleId, newAward.messagesSent)
-                    }
-                } else if (json.messagesSent >= 100) {
-                    var newAward = messageAchievements.find(achievement => achievement.messagesSent === 100)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(msg, newAward.roleId, newAward.messagesSent)
-                    }
-                } else if (json.messagesSent >= 10) {
-                    var newAward = messageAchievements.find(achievement => achievement.messagesSent === 10)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(msg, newAward.roleId, newAward.messagesSent)
+                var maxAchievement
+                var maxValue = 0
+                for (var i=0; i < messageAchievements.length; i++) {
+                    var achievement = messageAchievements[i]
+                    if (
+                        json.messagesSent >= achievement.messagesSent
+                        && achievement.messagesSent > maxValue
+                        ) {
+                        maxValue = achievement.messagesSent
+                        maxAchievement = achievement
                     }
                 }
+                award(member, maxAchievement.roleId, maxAchievement.messagesSent)
             }
         })
 }

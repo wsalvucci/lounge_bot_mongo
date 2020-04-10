@@ -36,32 +36,18 @@ function checkStatus(member) {
             if (json.error !== undefined) {
                 console.log(error)
             } else {
-                if (json.secondsVoice >= 172800) {
-                    var newAward = messageAchievements.find(achievement => achievement.secondsVoice === 172800)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(member, newAward.roleId, newAward.secondsVoice)
-                    }
-                } else if (json.secondsVoice >= 86400) {
-                    var newAward = messageAchievements.find(achievement => achievement.secondsVoice === 86400)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(member, newAward.roleId, newAward.secondsVoice)
-                    }
-                } else if (json.secondsVoice >= 43200) {
-                    var newAward = messageAchievements.find(achievement => achievement.secondsVoice === 43200)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(member, newAward.roleId, newAward.secondsVoice)
-                    }
-                } else if (json.secondsVoice >= 3600) {
-                    var newAward = messageAchievements.find(achievement => achievement.secondsVoice === 3600)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(member, newAward.roleId, newAward.secondsVoice)
-                    }
-                } else if (json.secondsVoice >= 60) {
-                    var newAward = messageAchievements.find(achievement => achievement.secondsVoice === 60)
-                    if (newAward !== null && newAward !== undefined) {
-                        award(member, newAward.roleId, newAward.secondsVoice)
+                var maxAchievement
+                var maxValue = 0
+                for (var i=0; i < messageAchievements.length; i++) {
+                    var achievement = messageAchievements[i]
+                    if (
+                        json.secondsVoice >= achievement.secondsVoice
+                        && achievement.secondsVoice > maxValue) {
+                            maxValue = achievement.secondsVoice
+                            maxAchievement = achievement
                     }
                 }
+                award(member, maxAchievement.roleId, maxAchievement.secondsVoice)
             }
         })
 }
