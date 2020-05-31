@@ -1,5 +1,11 @@
 exports.changeLog = [
     {
+        version: '1.2',
+        changeLog: [
+            'Burned achievement system to the ground. That was a mess'
+        ]
+    },
+    {
         version: '1.1',
         changeLog: [
             '1.1.2 hotfix: Achievement system bugs',
