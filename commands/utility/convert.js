@@ -78,7 +78,7 @@ module.exports = class ConvertCommand extends Command {
 
                 default: value = false
             }
-            if (!value && isNaN(value)) {
+            if (value !== 0 && !value) {
                 message.reply('Either an improper or unsupported unit was entered')
             } else {
                 if (value < 1) {

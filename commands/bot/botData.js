@@ -2,6 +2,7 @@ exports.changeLog = [
     {
         version: '1.3',
         changeLog: [
+            '1.3.2 hotfix: Javascript is dumb',
             '1.3.1 hotfix: Some logic errors with conversions',
             'Added unit conversions select units of measurement, mass, and temperature. Use `!!convert <amount> <unit> <unit to convert to>`'
         ]
