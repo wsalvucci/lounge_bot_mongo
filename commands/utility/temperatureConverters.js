@@ -4,7 +4,7 @@ function getMultiplier(value, unit) {
         case 'c':
         case 'celsius': return value; break
         case 'f':
-        case 'fahrenheit': return value; break
+        case 'fahrenheit': return (value * 1.8) + 32; break
         case 'k':
         case 'kelvin': return value * 0.001; break
         default: return false
