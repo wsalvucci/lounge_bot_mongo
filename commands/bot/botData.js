@@ -1,5 +1,11 @@
 exports.changeLog = [
     {
+        version: '1.3',
+        changeLog: [
+            'Added unit conversions select units of measurement, mass, and temperature. Use `!!convert <amount> <unit> <unit to convert to>`'
+        ]
+    },
+    {
         version: '1.2',
         changeLog: [
             'Burned achievement system to the ground. That was a mess'
