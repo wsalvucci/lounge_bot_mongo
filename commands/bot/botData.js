@@ -1,5 +1,11 @@
 exports.changeLog = [
     {
+        version: '1.4',
+        changeLog: [
+            'Added a `!!wiki` command to search for wikipedia articles using the bot'
+        ]
+    },
+    {
         version: '1.3',
         changeLog: [
             '1.3.2 hotfix: Javascript is dumb',
