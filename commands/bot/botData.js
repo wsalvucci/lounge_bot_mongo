@@ -1,4 +1,10 @@
-exports.changeLog = [
+exports.changeLog = [{
+        version: '1.5',
+        changeLog: [
+            'Added `!!stats` so you can view your own server stats stored on the database',
+            'Added `!!leaderboard` so you can view the top 2 users for each stat'
+        ]
+    },
     {
         version: '1.4',
         changeLog: [

@@ -1,2 +1,2 @@
-require('./users')
-require('./stats')
+require('./sqlStats')
+require('./sqlUsers')

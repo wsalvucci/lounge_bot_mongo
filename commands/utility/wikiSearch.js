@@ -1,5 +1,9 @@
-const { Command } = require("discord.js-commando");
-const { default: fetch } = require("node-fetch");
+const {
+    Command
+} = require("discord.js-commando");
+const {
+    default: fetch
+} = require("node-fetch");
 const Discord = require('discord.js')
 
 module.exports = class wikiCommand extends Command {
@@ -10,17 +14,17 @@ module.exports = class wikiCommand extends Command {
             group: 'utility',
             memberName: 'wiki',
             description: 'Searches an article on wikipedia, returns the summary, and provides a link to it',
-            args: [
-                {
-                    key: 'query',
-                    prompt: 'You need to provide a search query',
-                    type: 'string'
-                }
-            ]
+            args: [{
+                key: 'query',
+                prompt: 'You need to provide a search query',
+                type: 'string'
+            }]
         })
     }
 
-    run(message, { query }) {
+    run(message, {
+        query
+    }) {
         fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" + query)
             .then(res => res.json())
             .then(json => {
