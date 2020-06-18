@@ -10,7 +10,7 @@ app.get('/users/addUser', function(req, res) {
                         res.send(item)
                     })
                     .catch(err => {
-                        console.error(err)
+                        console.log(err)
                         res.send(err)
                     })
             } else {
@@ -19,7 +19,7 @@ app.get('/users/addUser', function(req, res) {
             }
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })
@@ -30,7 +30,7 @@ app.get('/users/getUser', function(req, res) {
             res.send(item)
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: "Error creating account."})
         })
 })
@@ -41,7 +41,7 @@ app.get('/users/changeColor', function(req, res) {
             res.send(item)
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })
@@ -52,7 +52,7 @@ app.get('/users/setNickname', function(req, res) {
             res.send(item)
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })
@@ -65,12 +65,12 @@ app.get('/users/slapUser', function(req, res) {
                     res.send(item)
                 })
                 .catch(err => {
-                    console.error(err)
+                    console.log(err)
                     res.send({error: err})
                 })
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })

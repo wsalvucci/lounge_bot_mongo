@@ -1,6 +1,7 @@
 exports.changeLog = [{
-        version: '1.5.1',
+        version: '1.5.2',
         changeLog: [
+            '1.5.2 update: Leaderboards now return fancy graphics as well as the top 3. Added more conversions. Fixed some stat tracking hopefully',
             '1.5.1 update: Made !!stats super fancy with Canvas tools. Still working on !!leaderboard glitches',
             'Added `!!stats` so you can view your own server stats stored on the database',
             'Added `!!leaderboard` so you can view the top 2 users for each stat'

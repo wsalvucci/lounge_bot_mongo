@@ -54,7 +54,7 @@ app.get('/users/slapUser', function (req, res) {
 })
 
 app.get('/users/leaderboard', function (req, res) {
-    db.query('SELECT * FROM users ORDER BY ' + req.query.stat + ' DESC LIMIT 2', function (err, data) {
+    db.query('SELECT * FROM users ORDER BY ' + req.query.stat + ' DESC LIMIT 3', function (err, data) {
         if (err)
             res.send(err)
         else

@@ -6,7 +6,7 @@ app.get('/users/addMessage', function(req, res) {
             res.send(item)
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })
@@ -17,7 +17,7 @@ app.get('/users/addVoice', function(req, res) {
             res.send(item)
         })
         .catch(err => {
-            console.error(err)
+            console.log(err)
             res.send({error: err})
         })
 })

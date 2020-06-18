@@ -5,6 +5,30 @@ const {
     default: fetch
 } = require("node-fetch");
 const Discord = require('discord.js')
+const Canvas = require('canvas')
+
+async function sendCanvas(message, json, stat) {
+    const canvas = Canvas.createCanvas(700,300)
+    const ctx = canvas.getContext('2d')
+    const background = await Canvas.loadImage('images/statsBackground.png')
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height)
+    ctx.font = '48px sans-serif'
+    ctx.fillStyle = '#ffffff'
+
+    ctx.fillText('Leaderboard for ' + stat, 50, 50, canvas.width-100)
+
+    ctx.font = '36px sans-serif'
+
+    json.forEach((user, index) => {
+        ctx.fillText((index+1), 75, 50*(index+1)+50)
+        ctx.fillText(user.name, 150, 50*(index+1)+50)
+        ctx.fillText(user[stat], 500, 50*(index+1)+50)
+    })
+
+    const attachment = new Discord.Attachment(canvas.toBuffer())
+
+    message.channel.send(attachment)
+}
 
 module.exports = class leaderboardCommand extends Command {
     constructor(client) {
@@ -43,7 +67,7 @@ module.exports = class leaderboardCommand extends Command {
                         responseEmbed.addField('#' + (index + 1) + ' ' + user.name, user[stat])
                     });
 
-                    message.reply(responseEmbed)
+                    sendCanvas(message, json, stat)
                 }
             })
     }

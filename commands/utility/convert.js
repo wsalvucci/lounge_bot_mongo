@@ -2,6 +2,7 @@ const { Command } = require("discord.js-commando");
 const measurementConverter = require('./measurementConverters')
 const weightConverter = require('./weightConverters')
 const temperatureConverter = require('./temperatureConverters')
+const timeConverter = require('./timeConverters')
 
 module.exports = class ConvertCommand extends Command {
     constructor(client) {
@@ -67,6 +68,11 @@ module.exports = class ConvertCommand extends Command {
                 case 'ounces': value = weightConverter.convertOunce(firstAmount, secondUnit); break
                 case 'lb':
                 case 'pounds': value = weightConverter.convertPound(firstAmount, secondUnit); break
+                case 'st':
+                case 'stones': value = weightConverter.convertStone(firstAmount, secondUnit); break
+                case 'slug':  value = weightConverter.convertSlug(firstAmount, secondUnit); break
+                case 'ct':
+                case 'carat':  value = weightConverter.convertCarat(firstAmount, secondUnit); break
 
                 
                 case 'c':
@@ -75,6 +81,32 @@ module.exports = class ConvertCommand extends Command {
                 case 'fahrenheit': value = temperatureConverter.convertFahrenheit(firstAmount, secondUnit); break
                 case 'k':
                 case 'kelvin': value = temperatureConverter.convertKelvin(firstAmount, secondUnit); break
+
+                
+                case 'ms':
+                case 'millisecond': value = timeConverter.convertMilliseconds(firstAmount, secondUnit); break
+                case 's':
+                case 'second': value = timeConverter.convertSeconds(firstAmount, secondUnit); break
+                case 'm':
+                case 'minute': value = timeConverter.convertMinutes(firstAmount, secondUnit); break
+                case 'h':
+                case 'hr':
+                case 'hrs':
+                case 'hour':
+                case 'hours': value = timeConverter.convertHours(firstAmount, secondUnit); break
+                case 'd':
+                case 'day':
+                case 'days': value = timeConverter.convertDays(firstAmount, secondUnit); break
+                case 'w':
+                case 'wk':
+                case 'wks':
+                case 'week':
+                case 'weeks': value = timeConverter.convertWeeks(firstAmount, secondUnit); break
+                case 'y':
+                case 'yr':
+                case 'yrs':
+                case 'year':
+                case 'years': value = timeConverter.convertYears(firstAmount, secondUnit); break
 
                 default: value = false
             }

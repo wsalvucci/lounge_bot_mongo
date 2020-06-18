@@ -33,7 +33,10 @@ module.exports = class ChangeColorCommand extends Command {
                     message.reply('There was an error setting your nickname in the server.')
                 } else {
                     var guild = this.client.guilds.get(process.env.GUILD_ID)
-                    guild.members.get(message.author.id).setNickname(nickname)
+                    guild.members.get(message.author.id).setNickname(nickname).catch(err => {
+                        console.log(err)
+                        message.reply("I saved your nickname but can't set it in the server. You probably can set it yourself.")
+                    })
                 }
             })
     }
