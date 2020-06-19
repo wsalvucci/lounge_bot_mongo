@@ -59,6 +59,8 @@ module.exports = class leaderboardCommand extends Command {
             .then(json => {
                 if (json[0] === undefined) {
                     message.say('Invalid stat')
+                    console.log('LEADERBOARD DATA FAIL')
+                    console.log(json)
                 } else {
                     const responseEmbed = new Discord.RichEmbed()
                         .setTitle('Leaderboard for: ' + stat)

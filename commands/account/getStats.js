@@ -98,6 +98,8 @@ module.exports = class statsCommand extends Command {
             .then(json => {
                 if (json[0] === undefined) {
                     message.reply('There was an error getting your stats')
+                    console.log('STATS DATA FAIL')
+                    console.log(json)
                 } else {
                     var seconds = json[0].secondsVoice % 60
                     var minutes = Math.floor(json[0].secondsVoice / 60) % 60
