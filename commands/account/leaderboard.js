@@ -57,7 +57,7 @@ module.exports = class leaderboardCommand extends Command {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                if (json[0].errno) {
+                if (json[0] === undefined) {
                     message.say('Invalid stat')
                 } else {
                     const responseEmbed = new Discord.RichEmbed()

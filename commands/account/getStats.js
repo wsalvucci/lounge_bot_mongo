@@ -96,22 +96,26 @@ module.exports = class statsCommand extends Command {
         fetch(url)
             .then(res => res.json())
             .then(json => {
-                var seconds = json[0].secondsVoice % 60
-                var minutes = Math.floor(json[0].secondsVoice / 60) % 60
-                var hours = Math.floor(json[0].secondsVoice / 3600)
+                if (json[0] === undefined) {
+                    message.reply('There was an error getting your stats')
+                } else {
+                    var seconds = json[0].secondsVoice % 60
+                    var minutes = Math.floor(json[0].secondsVoice / 60) % 60
+                    var hours = Math.floor(json[0].secondsVoice / 3600)
 
-                const responseEmbed = new Discord.RichEmbed()
-                    .setTitle(json[0].name)
-                    .setDescription('Account Created: `' + moment.unix(json[0].timeAdded).format('dddd, MMMM Do YYYY, h:mm:ss a') + '`')
-                    .setThumbnail(message.author.displayAvatarURL)
-                    .addField('Messages Sent', json[0].messagesSent)
-                    .addField('Time in Voice', hours + 'h ' + minutes + 'm ' + seconds + 's')
-                    .addField('Users Slapped', json[0].usersSlapped)
-                    .addField('Times Slapped', json[0].beenSlapped)
-                    .addField('Slap Ratio', Math.floor((json[0].usersSlapped / json[0].beenSlapped) * 100) / 100)
-                    .setColor(json[0].color)
+                    const responseEmbed = new Discord.RichEmbed()
+                        .setTitle(json[0].name)
+                        .setDescription('Account Created: `' + moment.unix(json[0].timeAdded).format('dddd, MMMM Do YYYY, h:mm:ss a') + '`')
+                        .setThumbnail(message.author.displayAvatarURL)
+                        .addField('Messages Sent', json[0].messagesSent)
+                        .addField('Time in Voice', hours + 'h ' + minutes + 'm ' + seconds + 's')
+                        .addField('Users Slapped', json[0].usersSlapped)
+                        .addField('Times Slapped', json[0].beenSlapped)
+                        .addField('Slap Ratio', Math.floor((json[0].usersSlapped / json[0].beenSlapped) * 100) / 100)
+                        .setColor(json[0].color)
 
-                sendCanvas(message, json)
+                    sendCanvas(message, json)
+                }
             })
     }
 }
