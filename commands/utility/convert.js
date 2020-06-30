@@ -16,7 +16,7 @@ module.exports = class ConvertCommand extends Command {
                 {
                     key: 'firstAmount',
                     prompt: 'You need to provide an initial amount to convert',
-                    type: 'integer'
+                    type: 'float'
                 },
                 {
                     key: 'firstUnit',

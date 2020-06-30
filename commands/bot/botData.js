@@ -1,4 +1,13 @@
-exports.changeLog = [{
+exports.changeLog = [
+    {
+        version: '1.6',
+        changeLog: [
+            'Added !!weather command. Enter a zip code with the weather command i.e. `!!weather 43050` to get the current weather for that location',
+            'Added a !!converycurrency command (can also just use !!currency). Give a currency abbreviation, an amount, and a currency abbreviation to convert to to convert i.e. `!!currency USD 1 JPY`',
+            'Fixed bug where conversions with decimals was not possible'
+        ]
+    },
+    {
         version: '1.5.2',
         changeLog: [
             '1.5.2 update: Leaderboards now return fancy graphics as well as the top 3. Added more conversions. Fixed some stat tracking hopefully',
