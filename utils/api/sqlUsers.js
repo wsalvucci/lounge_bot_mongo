@@ -53,6 +53,16 @@ app.get('/users/slapUser', function (req, res) {
     res.send({})
 })
 
+app.get('/users/alterLuck', function(req, res) {
+    console.log('UPDATE users SET luck = luck + ' + req.query.amount + ' WHERE discordId="' + req.query.discordId + '"')
+    db.query('UPDATE users SET luck = luck + ? WHERE discordId=?', [req.query.amount, req.query.discordId], function(err, data) {
+        if (err)
+            res.send(err)
+        else
+            res.send(data)
+    })
+})
+
 app.get('/users/leaderboard', function (req, res) {
     db.query('SELECT * FROM users ORDER BY ' + req.query.stat + ' DESC LIMIT 3', function (err, data) {
         if (err)

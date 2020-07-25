@@ -14,7 +14,7 @@ async function sendCanvas(message, json) {
     var hours = Math.floor(json[0].secondsVoice / 3600)
     var level = Math.pow(json[0].secondsVoice / 10 + json[0].messagesSent + (json[0].usersSlapped + json[0].beenSlapped) * 20,0.95)/ 100
 
-    const canvas = Canvas.createCanvas(700, 250)
+    const canvas = Canvas.createCanvas(950, 250)
     const ctx = canvas.getContext('2d')
 
     const background = await Canvas.loadImage('images/statsBackground.png')
@@ -70,6 +70,18 @@ async function sendCanvas(message, json) {
     ctx.font = '24px sans-serif'
     ctx.fillStyle = '#ffffff'
     ctx.fillText(Math.floor((json[0].usersSlapped / json[0].beenSlapped) * 100) / 100, 500, 225)
+
+    ctx.font = '24px sans-serif'
+    ctx.fillStyle = '#ffffff'
+    ctx.fillText('Luck', 750, 50)
+
+    if (json[0].luck >= 0) {
+        ctx.fillStyle = '#00ff00'
+        ctx.fillText('+' + json[0].luck + '%', 750, 75)
+    } else {
+        ctx.fillStyle = '#ff0000'
+        ctx.fillText(json[0].luck + '%', 750, 75)
+    }
 
     const attachment = new Discord.Attachment(canvas.toBuffer(), 'welcome-image.png')
 

@@ -1,9 +1,17 @@
 exports.changeLog = [
     {
+        version: '1.7',
+        changeLog: [
+            'Added the luck stat. The luck stat affects your chances of being kicked from the server when being slapped or using the slap command',
+            'The luck state can only be modified by Sealith for the time being until a more robust system is created',
+            'You can check your luck stat with the `!!stats` command'
+        ]
+    },
+    {
         version: '1.6',
         changeLog: [
             'Added !!weather command. Enter a zip code with the weather command i.e. `!!weather 43050` to get the current weather for that location',
-            'Added a !!converycurrency command (can also just use !!currency). Give a currency abbreviation, an amount, and a currency abbreviation to convert to to convert i.e. `!!currency USD 1 JPY`',
+            'Added a !!convertcurrency command (can also just use !!currency). Give a currency abbreviation, an amount, and a currency abbreviation to convert to to convert i.e. `!!currency USD 1 JPY`',
             'Fixed bug where conversions with decimals was not possible'
         ]
     },

@@ -141,41 +141,84 @@ module.exports = class ChangeColorCommand extends Command {
                 .then(res => res.json())
                 .then(json => {
                     if (json.error !== undefined) {
-                        message.reply('There was in error in trying to slap')
+                        message.reply('There was an error in trying to slap')
                     } else {
-                        var random = Math.random()
-                        if (random <= 0.01) {
-                            //<= 0.01 - 1%
-                            attacker.kick()
-                            .then(message.channel.send(legendaryBadResponse(attackerName, victimName)))
-                            .catch('I cannot kick this person...');
-                        } else if (random <= 0.05) {
-                            //0.01 to 0.05 - 4%
-                            message.channel.send(epicBadResponse(attackerName, victimName));
-                        } else if (random <= 0.10) {
-                            //0.05 to 0.10 - 5%
-                            message.channel.send(rareBadResponse(attackerName, victimName));
-                        } else if (random <= 0.25) {
-                            //0.10 to 0.25 - 15%
-                            message.channel.send(uncommonBadResponse(attackerName, victimName));
-                        } else if (random <= 0.75) {
-                            //0.25 to 0.75 - 50%
-                            message.channel.send(commonResponse(attackerName, victimName));
-                        } else if (random <= 0.90) {
-                            //0.75 to 0.90 - 15%
-                            message.channel.send(uncommonGoodResponse(attackerName, victimName));
-                        } else if (random <= 0.95) {
-                            //0.90 to 0.95 - 5%
-                            message.channel.send(rareGoodResponse(attackerName, victimName));
-                        } else if (random <= 0.99) {
-                            //0.95 to 0.99 - 4%
-                            message.channel.send(epicGoodResponse(attackerName, victimName));
-                        } else {
-                            //>= 0.99 - 1%
-                            victim.kick()
-                            .then(message.channel.send(legendaryGoodResponse(attackerName, victimName)))
-                            .catch(error => message.channel('I cannot kick this person...'))
+
+                        params = {
+                            discordId: message.author.id
                         }
+
+                        var url = new URL(process.env.API_ENDPOINT + '/users/getUser')
+                        url.search = new URLSearchParams(params).toString()
+
+                        fetch(url)
+                            .then(res => res.json())
+                            .then(attackerJson => {
+                                if (json.error !== undefined) {
+                                    message.reply('There was an error in getting attacker luck stats')
+                                } else {
+
+                                    params = {
+                                        discordId: target.id
+                                    }
+
+                                    var url = new URL(process.env.API_ENDPOINT + '/users/getUser')
+                                    url.search = new URLSearchParams(params).toString()
+
+                                    fetch(url)
+                                        .then(res => res.json())
+                                        .then(targetJson => {
+                                            if (json.error !== undefined) {
+                                                message.reply('There was an error in getting target luck stats')
+                                            } else {
+
+                                                var random = Math.random()
+
+                                                if (attackerJson[0] !== undefined)
+                                                    random += (attackerJson[0].luck / 100)
+                                                
+                                                if (targetJson[0] !== undefined)
+                                                    random -= (attackerJson[0].luck / 100)
+
+                                                if (random <= 0.01) {
+                                                    //<= 0.01 - 1%
+                                                    attacker.kick()
+                                                    .then(message.channel.send(legendaryBadResponse(attackerName, victimName)))
+                                                    .catch('I cannot kick this person...');
+                                                } else if (random <= 0.05) {
+                                                    //0.01 to 0.05 - 4%
+                                                    message.channel.send(epicBadResponse(attackerName, victimName));
+                                                } else if (random <= 0.10) {
+                                                    //0.05 to 0.10 - 5%
+                                                    message.channel.send(rareBadResponse(attackerName, victimName));
+                                                } else if (random <= 0.25) {
+                                                    //0.10 to 0.25 - 15%
+                                                    message.channel.send(uncommonBadResponse(attackerName, victimName));
+                                                } else if (random <= 0.75) {
+                                                    //0.25 to 0.75 - 50%
+                                                    message.channel.send(commonResponse(attackerName, victimName));
+                                                } else if (random <= 0.90) {
+                                                    //0.75 to 0.90 - 15%
+                                                    message.channel.send(uncommonGoodResponse(attackerName, victimName));
+                                                } else if (random <= 0.95) {
+                                                    //0.90 to 0.95 - 5%
+                                                    message.channel.send(rareGoodResponse(attackerName, victimName));
+                                                } else if (random <= 0.99) {
+                                                    //0.95 to 0.99 - 4%
+                                                    message.channel.send(epicGoodResponse(attackerName, victimName));
+                                                } else {
+                                                    //>= 0.99 - 1%
+                                                    victim.kick()
+                                                    .then(message.channel.send(legendaryGoodResponse(attackerName, victimName)))
+                                                    .catch(error => message.channel('I cannot kick this person...'))
+                                                }
+                                            }
+                                        })
+
+                                }
+                            })
+
+
                     }
                 })
         }
